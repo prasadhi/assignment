@@ -1,0 +1,44 @@
+Assignment: Designing a Database Schema for an E-commerce Application
+->Give an e-commerce application with users, products, and orders ,design a database schema to
+efficiently store and retrieve data . Write sql quries to retrieved all orders made by a particular user.
+
+
+ Users Table :
+
+CREATE TABLE Users (
+user_id INT PRIMARY KEY,
+username VARCHAR(255),
+email VARCHAR(255),
+password VARCHAR(255)
+);
+
+ Products Table
+
+CREATE TABLE Products (
+product_id INT PRIMARY KEY,
+name VARCHAR(255),
+price DECIMAL(10,2)
+);
+
+ Orders Table
+
+CREATE TABLE Orders (
+order_id INT PRIMARY KEY,
+user_id INT,
+order_date DATE,
+FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+
+ Orders_items Table
+
+CREATE TABLE Order_Items (
+order_item_id INT PRIMARY KEY,
+order_id INT,
+product_id INT,
+FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
+
+Write sql quries to retrieved all orders made by a particular user.
+
+SELECT * FROM Orders WHERE user_id = user_id;
